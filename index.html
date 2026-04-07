@@ -1,63 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="icon" type="image/png" href="icono.png">
-<link rel="apple-touch-icon" href="icono.png">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vuelve | El camino a casa</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="icono.png">
+    <link rel="apple-touch-icon" href="icono.png">
     <style>
         .card-mascota { border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn-float { position: fixed; bottom: 20px; right: 20px; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .btn-float { position: fixed; bottom: 20px; right: 20px; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 100; }
+        .nequi-purple { color: #7000FF; }
+        .nequi-bg { background-color: #f3e8ff; }
     </style>
 </head>
-<body class="bg-gray-50 pb-20">
+<body class="bg-gray-50 pb-24">
 
-    <header class="bg-blue-600 text-white p-4 text-center shadow-md">
-        <h1 class="text-2xl font-bold italic">Vuelve</h1>
-        <p class="text-xs">Alertas de mascotas en Cali</p>
+    <header class="bg-blue-600 text-white p-6 text-center shadow-lg">
+        <h1 class="text-3xl font-black italic tracking-tighter">Vuelve</h1>
+        <p class="text-xs opacity-90">Red de Alerta de Mascotas • Cali</p>
     </header>
 
-    <div class="p-4 bg-white sticky top-0 z-10 shadow-sm">
-        <select id="filtroBarrio" class="w-full p-2 border rounded-lg bg-gray-100 text-sm">
-            <option value="todos">Todos los barrios de Cali</option>
+    <div class="p-4 bg-white sticky top-0 z-10 shadow-sm border-b">
+        <select id="filtroBarrio" class="w-full p-3 border rounded-xl bg-gray-50 text-sm font-medium">
+            <option value="todos">📍 Ver todos los barrios de Cali</option>
             <option value="sur">Sur (Pance, Valle del Lili, Caney)</option>
-            <option value="norte">Norte (Vipasa, La Flora)</option>
-            <option value="oeste">Oeste (San Antonio, El Peñon)</option>
+            <option value="norte">Norte (Vipasa, La Flora, Chipichape)</option>
+            <option value="oeste">Oeste (San Antonio, El Peñón, Terrón)</option>
             <option value="centro">Centro y Oriente</option>
         </select>
     </div>
 
-    <main class="p-4 grid grid-cols-1 gap-4" id="feedMascotas">
-        <div class="card-mascota bg-white p-4">
-            <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-bold uppercase">🚨 Perdido</span>
-            <div class="h-48 bg-gray-200 my-2 rounded-md flex items-center justify-center text-gray-400 italic">Foto de la mascota</div>
-            <h2 class="font-bold text-lg text-gray-800">Labrador Dorado</h2>
-            <p class="text-sm text-gray-600">Visto en: <b>Parque del Perro</b></p>
-            <p class="text-xs text-gray-500 mt-1">"Tiene un collar azul, es muy dócil."</p>
-            <a href="https://wa.me/573171261268" class="block mt-3 bg-green-500 text-white text-center py-2 rounded-lg font-bold">Contactar vía WhatsApp</a>
+    <main class="p-4 grid grid-cols-1 gap-6" id="feedMascotas">
+        
+        <div class="card-mascota bg-white p-4 border border-gray-100">
+            <div class="flex justify-between items-start mb-3">
+                <span class="bg-red-500 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">🚨 Reporte Reciente</span>
+                <span class="text-gray-400 text-[10px]">Hace 15 min</span>
+            </div>
+            
+            <div class="h-56 bg-gray-200 mb-3 rounded-xl flex items-center justify-center overflow-hidden">
+                <p class="text-gray-400 italic text-sm p-4 text-center">Toca el botón + para reportar una mascota vista en la calle.</p>
+            </div>
+
+            <h2 class="font-extrabold text-xl text-gray-800">Cali - Mascota en la calle</h2>
+            <p class="text-sm text-gray-600 mb-4">Ayúdanos a que regrese a casa. Si lo reconoces, contacta al rescatista abajo.</p>
+            
+            <a href="https://wa.me/573171261268?text=Hola,%20vi%20tu%20reporte%20en%20Vuelve.%20Tengo%20información." 
+               class="block w-full bg-green-500 hover:bg-green-600 text-white text-center py-3 rounded-xl font-bold transition-all shadow-md">
+                📱 Contactar por WhatsApp
+            </a>
         </div>
+
     </main>
 
-    <section class="p-4 mb-8">
-        <div class="bg-yellow-50 border-2 border-yellow-200 p-4 rounded-xl text-center">
-            <p class="text-sm text-yellow-800">¿Recuperaste a tu mejor amigo?</p>
-            <button onclick="alert('Aquí conectarás tu QR de Nequi')" class="mt-2 text-blue-600 font-bold underline">Invítame un café (Nequi/Daviplata)</button>
+    <section class="p-4">
+        <div class="nequi-bg border-2 border-purple-200 p-6 rounded-2xl text-center shadow-sm">
+            <h3 class="font-bold text-purple-900 mb-1 italic">¿Recuperaste a tu mejor amigo?</h3>
+            <p class="text-xs text-purple-700 mb-4 font-medium">Ayúdanos a mantener "Vuelve" gratis para todo Cali.</p>
+            
+            <div class="bg-white p-4 rounded-xl border border-purple-100 inline-block">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter mb-1 text-center">Donar por Nequi</p>
+                <p class="text-2xl font-black nequi-purple select-all tracking-wide">3018355163</p>
+                <p class="text-[9px] text-gray-400 mt-1 uppercase font-bold">Toca el número para copiar</p>
+            </div>
         </div>
     </section>
 
-    <button onclick="abrirFormulario()" class="btn-float bg-red-600 text-white font-bold">+</button>
+    <button onclick="window.location.href='https://wa.me/57TU_NUMERO_WHATSAPP?text=Quiero%20hacer%20un%20nuevo%20reporte'" 
+            class="btn-float bg-blue-600 text-white">
+        <span class="font-bold">+</span>
+    </button>
 
-    <script>
-        function abrirFormulario() {
-            const num = prompt("Introduce tu WhatsApp para que te contacten:");
-            if(num) {
-                alert("¡Perfecto! Se abrirá la cámara para subir la foto (Lógica de servidor necesaria para guardar permanentemente)");
-                // Aquí se conectaría con una base de datos gratuita como Supabase o Firebase
-            }
-        }
-    </script>
 </body>
 </html>
